@@ -85,9 +85,8 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   assets:
-  - assets/images/JC_pic.jpg
   - assets/images/Fritz_pic.jpg
-  - assets/images/Russel_pic.jpg
+  
   - assets/images/logo.png
   - assets/labels.txt
   - assets/Images_of_Plant/0.png
@@ -97,6 +96,7 @@ flutter:
   - assets/Images_of_Plant/4.png
   - assets/Images_of_Plant/5.png  
   - assets/Images_of_Plant/6.png  
+  - assets/Images_of_Plant/7.png  
   
 
 

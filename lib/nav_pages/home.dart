@@ -10,13 +10,14 @@ class homePage extends StatefulWidget {
 }
 
 const List<String> plants = [
-  "EE Laws",
-  "Thermodynamics",
-  "Management Contracts & Specs",
-  "General Chemistry",
-  "College Physics",
-  "Programming Engineering",
-  "Materials Engineering"
+  "Digital Logic Design",
+  "Computer Architecture",
+  "Embedded Systems",
+  "Software Development",
+  "Operating Systems",
+  "Networks and Security",
+  "Electronics",
+  "Machine Learning"
 ];
 
 class CustomSearchDelegate extends SearchDelegate {
@@ -196,7 +197,7 @@ class _HomePageState extends State<homePage> {
                   style: TextStyle(
                       fontSize: 18,
                       fontFamily: 'RobotoMedium',
-                      color: Color.fromRGBO(230, 155, 0, 1.0)),
+                      color: Colors.white),
                   textAlign: TextAlign.left),
             ),
             const SizedBox(

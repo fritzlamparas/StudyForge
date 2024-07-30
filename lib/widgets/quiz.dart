@@ -252,7 +252,7 @@ class _QuizCardState extends State<QuizCard> {
                             : () {
                                 if (!answerSubmitted) {
                                   bool userAnswerIsCorrect =
-                                      option == widget._question.correctAnswer;
+                                      option == widget._question.ans;
                                   handleOptionSelection(
                                       userAnswerIsCorrect, index);
                                   widget.onAnswerSubmitted(userAnswerIsCorrect);
@@ -283,7 +283,7 @@ class _QuizCardState extends State<QuizCard> {
             ),
             if (showCorrectAnswer && answerSubmitted)
               Text(
-                'Correct Answer: ${widget._question.correctAnswer}',
+                'Correct Answer: ${widget._question.ans}',
                 style: const TextStyle(
                   color: Color.fromRGBO(31, 31, 31, 1.0),
                   fontWeight: FontWeight.bold,
