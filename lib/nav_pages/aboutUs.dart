@@ -1,0 +1,102 @@
+import 'package:flutter/material.dart';
+
+class AboutUsPage extends StatelessWidget {
+  const AboutUsPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text(
+          "StudyForge",
+          style: TextStyle(
+              color: Color.fromRGBO(230, 155, 0, 1.0),
+              fontWeight: FontWeight.bold),
+        ),
+        backgroundColor: const Color.fromRGBO(31, 31, 31, 1.0),
+        shadowColor: const Color.fromRGBO(230, 155, 0, 1.0),
+      ),
+      backgroundColor: const Color.fromRGBO(31, 31, 31, 1.0),
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            const SizedBox(
+              height: 20,
+            ),
+            Container(
+              padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
+              child: const Text(
+                'About StudyForge',
+                style: TextStyle(
+                    fontSize: 30,
+                    fontFamily: 'RobotoBold',
+                    color: Color.fromRGBO(230, 155, 0, 1.0)),
+                textAlign: TextAlign.center,
+              ),
+            ),
+            const SizedBox(
+              height: 10,
+            ),
+            Container(
+              padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+              child: const Text(
+                'StudyForge is a mobile app designed to aid electrical engineering students in preparing for their pre-board exams. The app employs a quiz tool to test users on crucial exam topics, providing a streamlined and effective study experience with its user-friendly interface. StudyForge is an essential companion for students seeking comprehensive review in the field of electrical engineering.',
+                style: TextStyle(
+                    fontSize: 18,
+                    fontFamily: 'RobotoMedium',
+                    color: Colors.white,
+                    height: 1.5),
+                textAlign: TextAlign.center,
+              ),
+            ),
+            const SizedBox(
+              height: 5,
+            ),
+            Container(
+              padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+              child: const Text('App Creator',
+                  style: TextStyle(
+                      fontSize: 30,
+                      fontFamily: 'RobotoBold',
+                      color: Color.fromRGBO(230, 155, 0, 1.0)),
+                  textAlign: TextAlign.center),
+            ),
+            Container(
+              padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Column(
+                    children: <Widget>[
+                      const CircleAvatar(
+                        backgroundColor: Color.fromRGBO(230, 155, 0, 1.0),
+                        radius: 60,
+                        child: CircleAvatar(
+                          radius: 55,
+                          backgroundImage:
+                              AssetImage('assets/images/Fritz_pic.jpg'),
+                        ),
+                      ),
+                      Container(
+                        padding: const EdgeInsets.fromLTRB(15, 10, 15, 10),
+                        child: const Text(
+                          'Engr. Fritz Lamparas',
+                          style: TextStyle(
+                              fontSize: 17,
+                              fontFamily: 'RobotoMedium',
+                              color: Color.fromRGBO(230, 155, 0, 1.0)),
+                          textAlign: TextAlign.justify,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}

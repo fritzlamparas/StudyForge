@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "992768149397",
+    "project_id": "studyforge-b4da5",
+    "storage_bucket": "studyforge-b4da5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:992768149397:android:a22c7e1ebfbcaeafe3989c",
+        "android_client_info": {
+          "package_name": "com.example.studyforge"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAg-nxvUNF3sq9bt5WFRDWngpH4jjNOBg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
