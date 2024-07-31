@@ -43,7 +43,7 @@ class AboutUsPage extends StatelessWidget {
             Container(
               padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
               child: const Text(
-                'StudyForge is a mobile app designed to aid computer engineering students in preparing for their pre-board exams. The app employs a quiz tool to test users on crucial exam topics, providing a streamlined and effective study experience with its user-friendly interface. StudyForge is an essential companion for students seeking comprehensive review in the field of computer engineering.',
+                'StudyForge is a mobile app designed to aid computer engineering students in preparing for their exams. The app employs a quiz tool to test users on crucial exam topics, providing a streamlined and effective study experience with its user-friendly interface. StudyForge is an essential companion for students seeking comprehensive review in the field of computer engineering.',
                 style: TextStyle(
                     fontSize: 18,
                     fontFamily: 'RobotoMedium',

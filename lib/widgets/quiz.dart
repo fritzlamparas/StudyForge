@@ -15,7 +15,7 @@ class _SecondPageState extends State<SecondPage> {
   List<Object> _questionsList = [];
   int correctAnswers = 0;
   int totalQuestions = 0;
-
+  int answeredQuestions = 0;
   bool isLoading = false; // Add a loading indicator variable
 
   @override
@@ -35,7 +35,7 @@ class _SecondPageState extends State<SecondPage> {
             style: TextStyle(
               color: Color.fromRGBO(31, 31, 31, 1.0),
               fontWeight: FontWeight.bold,
-              fontSize: 20,
+              fontSize: 25,
             ),
           ),
           content: Column(
@@ -47,7 +47,7 @@ class _SecondPageState extends State<SecondPage> {
                 style: const TextStyle(
                   color: Color.fromRGBO(31, 31, 31, 1.0),
                   fontWeight: FontWeight.bold,
-                  fontSize: 15,
+                  fontSize: 20,
                 ),
               ),
               const SizedBox(
@@ -58,7 +58,7 @@ class _SecondPageState extends State<SecondPage> {
                 style: TextStyle(
                   color: Color.fromRGBO(31, 31, 31, 1.0),
                   fontWeight: FontWeight.bold,
-                  fontSize: 15,
+                  fontSize: 18,
                 ),
               ),
             ],
@@ -66,10 +66,19 @@ class _SecondPageState extends State<SecondPage> {
           actions: [
             TextButton(
               onPressed: () {
+                Navigator.popUntil(context, (route) => route.isFirst);
+              },
+              child: const Text(
+                "Home",
+                style: TextStyle(color: Color.fromRGBO(31, 31, 31, 1.0)),
+              ),
+            ),
+            TextButton(
+              onPressed: () {
                 Navigator.of(context).pop(); // Close the dialog
               },
               child: const Text(
-                "Cancel",
+                "Review",
                 style: TextStyle(color: Color.fromRGBO(31, 31, 31, 1.0)),
               ),
             ),
@@ -127,6 +136,12 @@ class _SecondPageState extends State<SecondPage> {
                               correctAnswers++;
                             });
                           }
+                          setState(() {
+                            answeredQuestions++;
+                          });
+                          if (answeredQuestions == totalQuestions) {
+                            _showResetConfirmationDialog(); // Show score dialog if all questions are answered
+                          }
                         },
                       );
                     },
@@ -165,6 +180,7 @@ class _SecondPageState extends State<SecondPage> {
       setState(() {
         correctAnswers = 0;
         totalQuestions = 0;
+        answeredQuestions = 0;
         _questionsList.clear();
         getQuestionsList();
         isLoading = false;
