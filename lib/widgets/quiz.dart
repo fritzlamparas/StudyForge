@@ -16,7 +16,10 @@ class _SecondPageState extends State<SecondPage> {
   int correctAnswers = 0;
   int totalQuestions = 0;
   int answeredQuestions = 0;
-  bool isLoading = false; // Add a loading indicator variable
+  bool isLoading = false;
+
+  // Add a map to store the selected options for each question
+  Map<int, int> selectedOptions = {};
 
   @override
   void didChangeDependencies() {
@@ -75,7 +78,7 @@ class _SecondPageState extends State<SecondPage> {
             ),
             TextButton(
               onPressed: () {
-                Navigator.of(context).pop(); // Close the dialog
+                Navigator.of(context).pop();
               },
               child: const Text(
                 "Review",
@@ -85,7 +88,7 @@ class _SecondPageState extends State<SecondPage> {
             TextButton(
               onPressed: () {
                 _resetQuiz();
-                Navigator.of(context).pop(); // Close the dialog
+                Navigator.of(context).pop();
               },
               child: const Text(
                 "Retake",
@@ -130,7 +133,8 @@ class _SecondPageState extends State<SecondPage> {
                     itemBuilder: (context, index) {
                       return QuizCard(
                         _questionsList[index] as Question,
-                        onAnswerSubmitted: (isCorrect) {
+                        selectedOptionIndex: selectedOptions[index],
+                        onAnswerSubmitted: (isCorrect, selectedIndex) {
                           if (isCorrect) {
                             setState(() {
                               correctAnswers++;
@@ -138,9 +142,10 @@ class _SecondPageState extends State<SecondPage> {
                           }
                           setState(() {
                             answeredQuestions++;
+                            selectedOptions[index] = selectedIndex;
                           });
                           if (answeredQuestions == totalQuestions) {
-                            _showResetConfirmationDialog(); // Show score dialog if all questions are answered
+                            _showResetConfirmationDialog();
                           }
                         },
                       );
@@ -161,7 +166,7 @@ class _SecondPageState extends State<SecondPage> {
         child: isLoading
             ? const CircularProgressIndicator(
                 color: Color.fromRGBO(230, 155, 0, 1.0),
-              ) // Show loading indicator
+              )
             : const Icon(
                 Icons.more_horiz,
                 color: Color.fromRGBO(230, 155, 0, 1.0),
@@ -172,16 +177,16 @@ class _SecondPageState extends State<SecondPage> {
 
   void _resetQuiz() {
     setState(() {
-      isLoading = true; // Set loading to true when starting to fetch questions
+      isLoading = true;
     });
 
-    // Simulate a delay to show the loading indicator (replace with your actual data fetching logic)
     Future.delayed(const Duration(seconds: 1), () {
       setState(() {
         correctAnswers = 0;
         totalQuestions = 0;
         answeredQuestions = 0;
         _questionsList.clear();
+        selectedOptions.clear(); // Clear selected options
         getQuestionsList();
         isLoading = false;
       });
@@ -196,10 +201,8 @@ class _SecondPageState extends State<SecondPage> {
           List.from(data.docs.map((doc) => Question.fromSnapshot(doc)));
       totalQuestions = _questionsList.length;
 
-      // Shuffle the questions
       _questionsList.shuffle();
 
-      // Shuffle the options for each question
       _questionsList.forEach((question) {
         (question as Question).options?.shuffle();
       });
@@ -209,9 +212,11 @@ class _SecondPageState extends State<SecondPage> {
 
 class QuizCard extends StatefulWidget {
   final Question _question;
-  final Function(bool) onAnswerSubmitted;
+  final int? selectedOptionIndex; // Add selectedOptionIndex
+  final Function(bool, int) onAnswerSubmitted;
 
-  const QuizCard(this._question, {Key? key, required this.onAnswerSubmitted})
+  const QuizCard(this._question,
+      {Key? key, required this.onAnswerSubmitted, this.selectedOptionIndex})
       : super(key: key);
 
   @override
@@ -223,13 +228,19 @@ class _QuizCardState extends State<QuizCard> {
   bool isCorrect = false;
   bool answerSubmitted = false;
   List<bool> optionSelectedList = [];
-  bool showCorrectAnswer =
-      false; // Track whether the user wants to see correct answers
+  bool showCorrectAnswer = false;
 
   @override
   void initState() {
     super.initState();
     optionSelectedList = List.filled(widget._question.options!.length, false);
+    if (widget.selectedOptionIndex != null) {
+      selectedOptionIndex = widget.selectedOptionIndex!;
+      answerSubmitted = true;
+      optionSelectedList[selectedOptionIndex] = true;
+      isCorrect = widget._question.options![selectedOptionIndex] ==
+          widget._question.ans;
+    }
   }
 
   @override
@@ -271,7 +282,8 @@ class _QuizCardState extends State<QuizCard> {
                                       option == widget._question.ans;
                                   handleOptionSelection(
                                       userAnswerIsCorrect, index);
-                                  widget.onAnswerSubmitted(userAnswerIsCorrect);
+                                  widget.onAnswerSubmitted(
+                                      userAnswerIsCorrect, index);
                                 }
                               },
                         style: ElevatedButton.styleFrom(
@@ -282,7 +294,6 @@ class _QuizCardState extends State<QuizCard> {
                               : const Color.fromRGBO(31, 31, 31, 1.0),
                         ),
                         child: Text(
-                          // Show correct answer if requested
                           showCorrectAnswer ? option : option,
                           textAlign: TextAlign.center,
                           style: TextStyle(
@@ -319,7 +330,6 @@ class _QuizCardState extends State<QuizCard> {
       optionSelectedList[index] = true;
     });
 
-    // Show correct answer if the user selected the wrong option
     if (!userAnswerIsCorrect) {
       Future.delayed(const Duration(milliseconds: 500), () {
         setState(() {
