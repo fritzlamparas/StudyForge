@@ -46,15 +46,15 @@ class _FeedbackPageState extends State<FeedbackPage> {
           title: const Text(
             "StudyForge",
             style: TextStyle(
-                color: Color.fromRGBO(230, 155, 0, 1.0),
+                color: Color.fromRGBO(0, 51, 102, 1.0),
                 fontWeight: FontWeight.bold),
           ),
-          backgroundColor: const Color.fromRGBO(31, 31, 31, 1.0),
-          shadowColor: const Color.fromRGBO(230, 155, 0, 1.0),
+          backgroundColor: const Color.fromRGBO(248, 248, 248, 1.0),
+          shadowColor: const Color.fromRGBO(0, 51, 102, 1.0),
         ),
 
         //body of the application
-        backgroundColor: const Color.fromRGBO(31, 31, 31, 1.0),
+        backgroundColor: const Color.fromRGBO(0, 51, 102, 1.0),
         body: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -68,7 +68,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                     fontSize: 30.0,
                     fontFamily: 'RobotoBold',
                     fontWeight: FontWeight.bold,
-                    color: Color.fromRGBO(230, 155, 0, 1.0)),
+                    color: Color.fromRGBO(248, 248, 248, 1.0)),
               ),
               const SizedBox(
                 height: 20,
@@ -78,7 +78,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                 style: TextStyle(
                   fontSize: 18.0,
                   fontFamily: 'RobotoMedium',
-                  color: Colors.white,
+                  color: Color.fromRGBO(248, 248, 248, 1.0),
                 ),
               ),
               const SizedBox(
@@ -115,7 +115,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                         controller: emailOfuser,
                         decoration: const InputDecoration(
                           filled: true,
-                          fillColor: Colors.white,
+                          fillColor: Color.fromRGBO(248, 248, 248, 1.0),
                           hintText: "Email",
                           border: OutlineInputBorder(),
                         ),
@@ -142,7 +142,7 @@ class _FeedbackPageState extends State<FeedbackPage> {
                         maxLines: 5,
                         decoration: const InputDecoration(
                           filled: true,
-                          fillColor: Colors.white,
+                          fillColor: Color.fromRGBO(248, 248, 248, 1.0),
                           hintText: "Message",
                           border: OutlineInputBorder(),
                         ),
@@ -157,43 +157,50 @@ class _FeedbackPageState extends State<FeedbackPage> {
                         },
                       ),
                       const SizedBox(height: 8.0),
-                      MaterialButton(
-                        height: 50.0,
-                        minWidth: double.infinity,
-                        color: const Color.fromRGBO(230, 155, 0, 1.0),
-                        onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            showDialog(
-                                context: context,
-                                builder: (BuildContext context) {
-                                  return const SimpleDialog(
-                                      'Your feedback has been submitted.');
-                                });
-                            Map<String, dynamic> data = {
-                              "Name": nameOfuser.text,
-                              "Email": emailOfuser.text,
-                              "Message": messageOfuser.text,
-                              "Time": FieldValue.serverTimestamp(),
-                            };
-                            setState(() {
-                              nameOfuser.clear();
-                              emailOfuser.clear();
-                              messageOfuser.clear();
-                            });
-                            FirebaseFirestore.instance
-                                .collection("FeedbackMessages")
-                                .add(data);
-                          }
-                        },
-                        child: const Text(
-                          "SUBMIT",
-                          style: TextStyle(
-                            fontFamily: 'RobotoBold',
-                            fontWeight: FontWeight.bold,
-                            color: Color.fromRGBO(31, 31, 31, 1.0),
+                      Container(
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                              color: Colors.white,
+                              width: 2), // Border color and width
+                        ),
+                        child: MaterialButton(
+                          height: 50.0,
+                          minWidth: double.infinity,
+                          color: const Color.fromRGBO(0, 51, 102, 1.0),
+                          onPressed: () {
+                            if (_formKey.currentState!.validate()) {
+                              showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return const SimpleDialog(
+                                        'Your feedback has been submitted.');
+                                  });
+                              Map<String, dynamic> data = {
+                                "Name": nameOfuser.text,
+                                "Email": emailOfuser.text,
+                                "Message": messageOfuser.text,
+                                "Time": FieldValue.serverTimestamp(),
+                              };
+                              setState(() {
+                                nameOfuser.clear();
+                                emailOfuser.clear();
+                                messageOfuser.clear();
+                              });
+                              FirebaseFirestore.instance
+                                  .collection("FeedbackMessages")
+                                  .add(data);
+                            }
+                          },
+                          child: const Text(
+                            "SUBMIT",
+                            style: TextStyle(
+                              fontFamily: 'RobotoBold',
+                              fontWeight: FontWeight.bold,
+                              color: Color.fromRGBO(248, 248, 248, 1.0),
+                            ),
                           ),
                         ),
-                      ),
+                      )
                     ],
                   ),
                 ),

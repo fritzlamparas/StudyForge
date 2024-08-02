@@ -13,13 +13,13 @@ class AboutUsPage extends StatelessWidget {
         title: const Text(
           "StudyForge",
           style: TextStyle(
-              color: Color.fromRGBO(230, 155, 0, 1.0),
+              color: Color.fromRGBO(0, 51, 102, 1.0),
               fontWeight: FontWeight.bold),
         ),
-        backgroundColor: const Color.fromRGBO(31, 31, 31, 1.0),
-        shadowColor: const Color.fromRGBO(230, 155, 0, 1.0),
+        backgroundColor: const Color.fromRGBO(248, 248, 248, 1.0),
+        shadowColor: const Color.fromRGBO(0, 51, 102, 1.0),
       ),
-      backgroundColor: const Color.fromRGBO(31, 31, 31, 1.0),
+      backgroundColor: const Color.fromRGBO(0, 51, 102, 1.0),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
@@ -33,7 +33,7 @@ class AboutUsPage extends StatelessWidget {
                 style: TextStyle(
                     fontSize: 30,
                     fontFamily: 'RobotoBold',
-                    color: Color.fromRGBO(230, 155, 0, 1.0)),
+                    color: Color.fromRGBO(248, 248, 248, 1.0)),
                 textAlign: TextAlign.center,
               ),
             ),
@@ -47,7 +47,7 @@ class AboutUsPage extends StatelessWidget {
                 style: TextStyle(
                     fontSize: 18,
                     fontFamily: 'RobotoMedium',
-                    color: Colors.white,
+                    color: Color.fromRGBO(248, 248, 248, 1.0),
                     height: 1.5),
                 textAlign: TextAlign.center,
               ),
@@ -61,7 +61,7 @@ class AboutUsPage extends StatelessWidget {
                   style: TextStyle(
                       fontSize: 30,
                       fontFamily: 'RobotoBold',
-                      color: Color.fromRGBO(230, 155, 0, 1.0)),
+                      color: Color.fromRGBO(248, 248, 248, 1.0)),
                   textAlign: TextAlign.center),
             ),
             Container(
@@ -72,7 +72,7 @@ class AboutUsPage extends StatelessWidget {
                   Column(
                     children: <Widget>[
                       const CircleAvatar(
-                        backgroundColor: Color.fromRGBO(230, 155, 0, 1.0),
+                        backgroundColor: Color.fromRGBO(248, 248, 248, 1.0),
                         radius: 60,
                         child: CircleAvatar(
                           radius: 55,
@@ -87,7 +87,7 @@ class AboutUsPage extends StatelessWidget {
                           style: TextStyle(
                               fontSize: 17,
                               fontFamily: 'RobotoMedium',
-                              color: Color.fromRGBO(230, 155, 0, 1.0)),
+                              color: Color.fromRGBO(248, 248, 248, 1.0)),
                           textAlign: TextAlign.justify,
                         ),
                       ),

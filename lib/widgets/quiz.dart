@@ -32,11 +32,11 @@ class _SecondPageState extends State<SecondPage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          backgroundColor: const Color.fromRGBO(230, 155, 0, 1.0),
+          backgroundColor: const Color.fromRGBO(248, 248, 248, 1.0),
           title: const Text(
             "Result",
             style: TextStyle(
-              color: Color.fromRGBO(31, 31, 31, 1.0),
+              color: Color.fromRGBO(0, 51, 102, 1.0),
               fontWeight: FontWeight.bold,
               fontSize: 25,
             ),
@@ -48,7 +48,7 @@ class _SecondPageState extends State<SecondPage> {
               Text(
                 'Score: $correctAnswers/$totalQuestions',
                 style: const TextStyle(
-                  color: Color.fromRGBO(31, 31, 31, 1.0),
+                  color: Color.fromRGBO(0, 51, 102, 1.0),
                   fontWeight: FontWeight.bold,
                   fontSize: 20,
                 ),
@@ -59,7 +59,7 @@ class _SecondPageState extends State<SecondPage> {
               const Text(
                 "Do you want to take the quiz again?",
                 style: TextStyle(
-                  color: Color.fromRGBO(31, 31, 31, 1.0),
+                  color: Color.fromRGBO(0, 51, 102, 1.0),
                   fontWeight: FontWeight.bold,
                   fontSize: 18,
                 ),
@@ -73,7 +73,7 @@ class _SecondPageState extends State<SecondPage> {
               },
               child: const Text(
                 "Home",
-                style: TextStyle(color: Color.fromRGBO(31, 31, 31, 1.0)),
+                style: TextStyle(color: Color.fromRGBO(0, 51, 102, 1.0)),
               ),
             ),
             TextButton(
@@ -82,7 +82,7 @@ class _SecondPageState extends State<SecondPage> {
               },
               child: const Text(
                 "Review",
-                style: TextStyle(color: Color.fromRGBO(31, 31, 31, 1.0)),
+                style: TextStyle(color: Color.fromRGBO(0, 51, 102, 1.0)),
               ),
             ),
             TextButton(
@@ -92,7 +92,7 @@ class _SecondPageState extends State<SecondPage> {
               },
               child: const Text(
                 "Retake",
-                style: TextStyle(color: Color.fromRGBO(31, 31, 31, 1.0)),
+                style: TextStyle(color: Color.fromRGBO(0, 51, 102, 1.0)),
               ),
             ),
           ],
@@ -107,22 +107,22 @@ class _SecondPageState extends State<SecondPage> {
 
     return Scaffold(
       appBar: AppBar(
-        iconTheme: const IconThemeData(color: Color.fromRGBO(230, 155, 0, 1.0)),
+        iconTheme: const IconThemeData(color: Color.fromRGBO(0, 51, 102, 1.0)),
         centerTitle: true,
         title: Text(
           "Quiz: $htopic",
           style: const TextStyle(
-            color: Color.fromRGBO(230, 155, 0, 1.0),
+            color: Color.fromRGBO(0, 51, 102, 1.0),
             fontWeight: FontWeight.bold,
             fontSize: 18,
           ),
         ),
-        backgroundColor: const Color.fromRGBO(31, 31, 31, 1.0),
-        shadowColor: const Color.fromRGBO(230, 155, 0, 1),
+        backgroundColor: const Color.fromRGBO(248, 248, 248, 1.0),
+        shadowColor: const Color.fromRGBO(0, 51, 102, 1.0),
       ),
       body: SafeArea(
         child: Container(
-          color: const Color.fromRGBO(31, 31, 31, 1.0),
+          color: const Color.fromRGBO(0, 51, 102, 1.0),
           child: Padding(
             padding: const EdgeInsets.all(10.0),
             child: Column(
@@ -162,14 +162,14 @@ class _SecondPageState extends State<SecondPage> {
         onPressed: () {
           _showResetConfirmationDialog();
         },
-        backgroundColor: const Color.fromRGBO(31, 31, 31, 1.0),
+        backgroundColor: const Color.fromRGBO(0, 51, 102, 1.0),
         child: isLoading
             ? const CircularProgressIndicator(
-                color: Color.fromRGBO(230, 155, 0, 1.0),
+                color: Color.fromRGBO(248, 248, 248, 1.0),
               )
             : const Icon(
                 Icons.more_horiz,
-                color: Color.fromRGBO(230, 155, 0, 1.0),
+                color: Color.fromRGBO(248, 248, 248, 1.0),
               ),
       ),
     );
@@ -193,12 +193,12 @@ class _SecondPageState extends State<SecondPage> {
     });
   }
 
-  Future getQuestionsList() async {
+  Future<void> getQuestionsList() async {
     var data =
         await FirebaseFirestore.instance.collection(widget.topicId).get();
     setState(() {
       _questionsList =
-          List.from(data.docs.map((doc) => Question.fromSnapshot(doc)));
+          data.docs.map((doc) => Question.fromSnapshot(doc)).toList();
       totalQuestions = _questionsList.length;
 
       _questionsList.shuffle();
@@ -240,13 +240,14 @@ class _QuizCardState extends State<QuizCard> {
       optionSelectedList[selectedOptionIndex] = true;
       isCorrect = widget._question.options![selectedOptionIndex] ==
           widget._question.ans;
+      showCorrectAnswer = widget._question.correctAnswerShown;
     }
   }
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: const Color.fromRGBO(230, 155, 0, 1.0),
+      color: const Color.fromRGBO(248, 248, 248, 1.0),
       child: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Column(
@@ -256,6 +257,7 @@ class _QuizCardState extends State<QuizCard> {
               style: const TextStyle(
                 fontSize: 18.0,
                 fontWeight: FontWeight.bold,
+                color: Color.fromRGBO(0, 51, 102, 1.0),
               ),
             ),
             const SizedBox(
@@ -270,7 +272,9 @@ class _QuizCardState extends State<QuizCard> {
                     if (answerSubmitted && selectedOptionIndex == index)
                       Icon(
                         isCorrect ? Icons.check : Icons.close,
-                        color: isCorrect ? Colors.green : Colors.red,
+                        color: isCorrect
+                            ? const Color.fromRGBO(0, 51, 102, 1.0)
+                            : const Color.fromRGBO(0, 51, 102, 1.0),
                       ),
                     Expanded(
                       child: ElevatedButton(
@@ -289,17 +293,17 @@ class _QuizCardState extends State<QuizCard> {
                         style: ElevatedButton.styleFrom(
                           backgroundColor: optionSelectedList[index]
                               ? isCorrect
-                                  ? const Color.fromRGBO(230, 155, 0, 1.0)
-                                  : const Color.fromRGBO(230, 155, 0, 1.0)
-                              : const Color.fromRGBO(31, 31, 31, 1.0),
+                                  ? const Color.fromRGBO(248, 248, 248, 1.0)
+                                  : const Color.fromRGBO(248, 248, 248, 1.0)
+                              : const Color.fromRGBO(0, 51, 102, 1.0),
                         ),
                         child: Text(
                           showCorrectAnswer ? option : option,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: optionSelectedList[index]
-                                ? const Color.fromRGBO(31, 31, 31, 1.0)
-                                : const Color.fromRGBO(230, 155, 0, 1.0),
+                                ? const Color.fromRGBO(0, 51, 102, 1.0)
+                                : const Color.fromRGBO(248, 248, 248, 1.0),
                           ),
                         ),
                       ),
@@ -312,7 +316,7 @@ class _QuizCardState extends State<QuizCard> {
               Text(
                 'Correct Answer: ${widget._question.ans}',
                 style: const TextStyle(
-                  color: Color.fromRGBO(31, 31, 31, 1.0),
+                  color: Color.fromRGBO(0, 51, 102, 1.0),
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -328,6 +332,8 @@ class _QuizCardState extends State<QuizCard> {
       answerSubmitted = true;
       selectedOptionIndex = index;
       optionSelectedList[index] = true;
+      showCorrectAnswer = true;
+      widget._question.correctAnswerShown = true;
     });
 
     if (!userAnswerIsCorrect) {
