@@ -44,7 +44,7 @@ dependencies:
 
 
 flutter_native_splash:
-  color: "#1f1f1f"
+  color: "#f8f8f8"
   image: assets/images/logo.png
   web: true
 
@@ -71,7 +71,7 @@ flutter_icons:
   web:
     generate: true
     image_path: "assets/images/LauncherIcon.png"
-    background_color: "#000000"
+    background_color: "#f8f8f8"
     theme_color: "#hexcode"
   windows:
     generate: true

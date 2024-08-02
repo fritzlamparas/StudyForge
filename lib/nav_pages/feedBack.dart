@@ -10,14 +10,25 @@ class SimpleDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      title: const Text('Feedback Sent'),
+      backgroundColor: const Color.fromRGBO(248, 248, 248, 1.0),
+      title: const Text('Feedback Sent',
+          style: TextStyle(
+            color: Color.fromRGBO(0, 51, 102, 1.0),
+            fontWeight: FontWeight.bold,
+            fontSize: 25,
+          )),
       content: Text(title),
       actions: [
         TextButton(
             onPressed: () {
               Navigator.of(context).pop();
             },
-            child: const Text('OK'))
+            child: const Text('OK',
+                style: TextStyle(
+                  color: Color.fromRGBO(0, 51, 102, 1.0),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18,
+                )))
       ],
     );
   }
@@ -157,47 +168,49 @@ class _FeedbackPageState extends State<FeedbackPage> {
                         },
                       ),
                       const SizedBox(height: 8.0),
-                      Container(
-                        decoration: BoxDecoration(
-                          border: Border.all(
-                              color: Colors.white,
-                              width: 2), // Border color and width
+                      MaterialButton(
+                        height: 50.0,
+                        minWidth: MediaQuery.of(context).size.width / 2 -
+                            32.0, // Adjust the width to be half minus padding
+                        color: const Color.fromRGBO(248, 248, 248, 1.0),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30.0),
+                          side: const BorderSide(
+                            color: Colors.white,
+                            width: 1,
+                          ),
                         ),
-                        child: MaterialButton(
-                          height: 50.0,
-                          minWidth: double.infinity,
-                          color: const Color.fromRGBO(0, 51, 102, 1.0),
-                          onPressed: () {
-                            if (_formKey.currentState!.validate()) {
-                              showDialog(
-                                  context: context,
-                                  builder: (BuildContext context) {
-                                    return const SimpleDialog(
-                                        'Your feedback has been submitted.');
-                                  });
-                              Map<String, dynamic> data = {
-                                "Name": nameOfuser.text,
-                                "Email": emailOfuser.text,
-                                "Message": messageOfuser.text,
-                                "Time": FieldValue.serverTimestamp(),
-                              };
-                              setState(() {
-                                nameOfuser.clear();
-                                emailOfuser.clear();
-                                messageOfuser.clear();
-                              });
-                              FirebaseFirestore.instance
-                                  .collection("FeedbackMessages")
-                                  .add(data);
-                            }
-                          },
-                          child: const Text(
-                            "SUBMIT",
-                            style: TextStyle(
-                              fontFamily: 'RobotoBold',
-                              fontWeight: FontWeight.bold,
-                              color: Color.fromRGBO(248, 248, 248, 1.0),
-                            ),
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) {
+                                return const SimpleDialog(
+                                    'Your feedback has been submitted.');
+                              },
+                            );
+                            Map<String, dynamic> data = {
+                              "Name": nameOfuser.text,
+                              "Email": emailOfuser.text,
+                              "Message": messageOfuser.text,
+                              "Time": FieldValue.serverTimestamp(),
+                            };
+                            setState(() {
+                              nameOfuser.clear();
+                              emailOfuser.clear();
+                              messageOfuser.clear();
+                            });
+                            FirebaseFirestore.instance
+                                .collection("FeedbackMessages")
+                                .add(data);
+                          }
+                        },
+                        child: const Text(
+                          "SUBMIT",
+                          style: TextStyle(
+                            fontFamily: 'RobotoBold',
+                            fontWeight: FontWeight.bold,
+                            color: Color.fromRGBO(0, 51, 102, 1.0),
                           ),
                         ),
                       )
