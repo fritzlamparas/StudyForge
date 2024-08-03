@@ -240,8 +240,8 @@ class _QuizCardState extends State<QuizCard> {
       optionSelectedList[selectedOptionIndex] = true;
       isCorrect = widget._question.options![selectedOptionIndex] ==
           widget._question.ans;
-      // Show the correct answer if the question is already answered and the user's answer was incorrect.
-      showCorrectAnswer = widget._question.correctAnswerShown;
+      // Only show the correct answer if the answer was incorrect
+      showCorrectAnswer = !isCorrect && widget._question.correctAnswerShown;
     }
   }
 
@@ -334,9 +334,8 @@ class _QuizCardState extends State<QuizCard> {
       selectedOptionIndex = index;
       optionSelectedList[index] = true;
       // Only show the correct answer if the user selected an incorrect answer.
-      showCorrectAnswer =
-          !userAnswerIsCorrect || widget._question.correctAnswerShown;
-      widget._question.correctAnswerShown = true;
+      showCorrectAnswer = !userAnswerIsCorrect;
+      widget._question.correctAnswerShown = !userAnswerIsCorrect;
     });
 
     if (!userAnswerIsCorrect) {

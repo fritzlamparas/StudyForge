@@ -48,6 +48,22 @@ class _FeedbackPageState extends State<FeedbackPage> {
   final _formKey = GlobalKey<FormState>();
 
   List<bool> isTypeSelected = [false, false, false, true, true];
+
+  String sanitizeDocumentId(String name) {
+    // Replace spaces with underscores and remove any non-alphanumeric characters
+    return name.trim().replaceAll(' ', '_').replaceAll(RegExp(r'[^\w]'), '');
+  }
+
+  String formatDate(DateTime dateTime) {
+    String month = dateTime.month.toString().padLeft(2, '0');
+    String day = dateTime.day.toString().padLeft(2, '0');
+    String year = dateTime.year.toString().substring(2); // Get last two digits
+    String hour = dateTime.hour.toString().padLeft(2, '0');
+    String minute = dateTime.minute.toString().padLeft(2, '0');
+    String second = dateTime.second.toString().padLeft(2, '0');
+    return "$month$day$year$hour$minute$second";
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -195,6 +211,11 @@ class _FeedbackPageState extends State<FeedbackPage> {
                               "Message": messageOfuser.text,
                               "Time": FieldValue.serverTimestamp(),
                             };
+                            String sanitizedUserName =
+                                sanitizeDocumentId(nameOfuser.text);
+                            String formattedDate = formatDate(DateTime.now());
+                            String documentId =
+                                "${sanitizedUserName}_$formattedDate";
                             setState(() {
                               nameOfuser.clear();
                               emailOfuser.clear();
@@ -202,7 +223,8 @@ class _FeedbackPageState extends State<FeedbackPage> {
                             });
                             FirebaseFirestore.instance
                                 .collection("FeedbackMessages")
-                                .add(data);
+                                .doc(documentId)
+                                .set(data);
                           }
                         },
                         child: const Text(
