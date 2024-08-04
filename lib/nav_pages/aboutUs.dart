@@ -14,7 +14,8 @@ class AboutUsPage extends StatelessWidget {
           "StudyForge",
           style: TextStyle(
               color: Color.fromRGBO(0, 51, 102, 1.0),
-              fontWeight: FontWeight.bold),
+              fontWeight: FontWeight.bold,
+              fontFamily: 'RobotoBold'),
         ),
         backgroundColor: const Color.fromRGBO(248, 248, 248, 1.0),
         shadowColor: const Color.fromRGBO(0, 51, 102, 1.0),

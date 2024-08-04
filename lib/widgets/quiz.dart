@@ -112,10 +112,10 @@ class _SecondPageState extends State<SecondPage> {
         title: Text(
           "Quiz: $htopic",
           style: const TextStyle(
-            color: Color.fromRGBO(0, 51, 102, 1.0),
-            fontWeight: FontWeight.bold,
-            fontSize: 18,
-          ),
+              color: Color.fromRGBO(0, 51, 102, 1.0),
+              fontWeight: FontWeight.bold,
+              fontSize: 18,
+              fontFamily: 'RobotoBold'),
         ),
         backgroundColor: const Color.fromRGBO(248, 248, 248, 1.0),
         shadowColor: const Color.fromRGBO(0, 51, 102, 1.0),
@@ -256,10 +256,10 @@ class _QuizCardState extends State<QuizCard> {
             Text(
               widget._question.question ?? "",
               style: const TextStyle(
-                fontSize: 18.0,
-                fontWeight: FontWeight.bold,
-                color: Color.fromRGBO(0, 51, 102, 1.0),
-              ),
+                  fontSize: 18.0,
+                  fontWeight: FontWeight.bold,
+                  color: Color.fromRGBO(0, 51, 102, 1.0),
+                  fontFamily: 'RobotoBold'),
             ),
             const SizedBox(
               height: 20,
@@ -302,6 +302,7 @@ class _QuizCardState extends State<QuizCard> {
                           option,
                           textAlign: TextAlign.center,
                           style: TextStyle(
+                            fontFamily: 'RobotoMedium',
                             color: optionSelectedList[index]
                                 ? const Color.fromRGBO(0, 51, 102, 1.0)
                                 : const Color.fromRGBO(248, 248, 248, 1.0),
@@ -319,6 +320,7 @@ class _QuizCardState extends State<QuizCard> {
                 style: const TextStyle(
                   color: Color.fromRGBO(0, 51, 102, 1.0),
                   fontWeight: FontWeight.bold,
+                  fontFamily: 'RobotoMedium',
                 ),
               ),
           ],

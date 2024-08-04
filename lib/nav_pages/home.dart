@@ -23,7 +23,7 @@ const List<String> plants = [
 ];
 
 class CustomSearchDelegate extends SearchDelegate {
-  CustomSearchDelegate({String hinttext = "Search topics here"})
+  CustomSearchDelegate({String hinttext = "Search topics here..."})
       : super(searchFieldLabel: hinttext);
 
   @override
@@ -144,7 +144,6 @@ class CustomSearchDelegate extends SearchDelegate {
 }
 
 class _HomePageState extends State<homePage> {
-  //Para ito sa shortcut for the List of Plants
   List<Widget> getPlantList() {
     List<Widget> plantitems = [];
     for (int i = 0; i < plants.length; i++) {

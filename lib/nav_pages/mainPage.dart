@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:studyforge/nav_pages/aboutUs.dart';
-
 import 'package:studyforge/nav_pages/feedBack.dart';
 import 'package:studyforge/nav_pages/home.dart';
 
@@ -14,6 +13,27 @@ class mainPage extends StatefulWidget {
 class _mainPageState extends State<mainPage> {
   List pages = [const homePage(), const AboutUsPage(), const FeedbackPage()];
   int currentIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text(
+              'StudyForge requires an internet connection to get the latest updates.',
+              style: TextStyle(
+                  color: Color.fromRGBO(248, 248, 248, 1.0),
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15,
+                  fontFamily: 'RobotoMedium')),
+          backgroundColor: Color.fromRGBO(112, 128, 144, 1.0),
+          duration: Duration(seconds: 5),
+        ),
+      );
+    });
+  }
+
   void onTap(int index) {
     setState(() {
       currentIndex = index;

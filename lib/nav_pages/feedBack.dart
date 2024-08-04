@@ -74,7 +74,8 @@ class _FeedbackPageState extends State<FeedbackPage> {
             "StudyForge",
             style: TextStyle(
                 color: Color.fromRGBO(0, 51, 102, 1.0),
-                fontWeight: FontWeight.bold),
+                fontWeight: FontWeight.bold,
+                fontFamily: 'RobotoBold'),
           ),
           backgroundColor: const Color.fromRGBO(248, 248, 248, 1.0),
           shadowColor: const Color.fromRGBO(0, 51, 102, 1.0),
@@ -176,6 +177,17 @@ class _FeedbackPageState extends State<FeedbackPage> {
                         inputFormatters: [
                           LengthLimitingTextInputFormatter(150),
                         ],
+                        buildCounter: (BuildContext context,
+                            {required int currentLength,
+                            required int? maxLength,
+                            required bool isFocused}) {
+                          return Text(
+                            '$currentLength/$maxLength',
+                            style: const TextStyle(
+                                fontFamily: 'RobotoMedium',
+                                color: Color.fromRGBO(248, 248, 248, 1.0)),
+                          );
+                        },
                         validator: (messageOfuser) {
                           if (messageOfuser == null || messageOfuser.isEmpty) {
                             return 'Please enter a message.';

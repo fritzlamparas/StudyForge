@@ -51,9 +51,8 @@ class ListViewCard extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                         fontSize: 15,
-                        fontFamily: 'RobotoMedium',
-                        color:
-                            const Color.fromRGBO(0, 51, 102, 1.0)), // textstyle
+                        fontFamily: 'RobotoBold',
+                        color: Color.fromRGBO(0, 51, 102, 1.0)), // textstyle
                   ),
                 ),
               ),
