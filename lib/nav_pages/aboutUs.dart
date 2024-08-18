@@ -24,15 +24,12 @@ class AboutUsPage extends StatelessWidget {
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
-            const SizedBox(
-              height: 20,
-            ),
             Container(
               padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
               child: const Text(
                 'About StudyForge',
                 style: TextStyle(
-                    fontSize: 30,
+                    fontSize: 28,
                     fontFamily: 'RobotoBold',
                     color: Color.fromRGBO(248, 248, 248, 1.0)),
                 textAlign: TextAlign.center,
@@ -60,7 +57,7 @@ class AboutUsPage extends StatelessWidget {
               padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
               child: const Text('App Creator',
                   style: TextStyle(
-                      fontSize: 30,
+                      fontSize: 28,
                       fontFamily: 'RobotoBold',
                       color: Color.fromRGBO(248, 248, 248, 1.0)),
                   textAlign: TextAlign.center),

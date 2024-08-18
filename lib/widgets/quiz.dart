@@ -270,44 +270,44 @@ class _QuizCardState extends State<QuizCard> {
                 final option = widget._question.options![index];
                 return Row(
                   children: [
-                    if (answerSubmitted && selectedOptionIndex == index)
-                      Icon(
-                        isCorrect ? Icons.check : Icons.close,
-                        color: isCorrect
-                            ? const Color.fromRGBO(0, 51, 102, 1.0)
-                            : const Color.fromRGBO(0, 51, 102, 1.0),
-                      ),
                     Expanded(
-                      child: ElevatedButton(
-                        onPressed: answerSubmitted
-                            ? () {}
-                            : () {
-                                if (!answerSubmitted) {
-                                  bool userAnswerIsCorrect =
-                                      option == widget._question.ans;
-                                  handleOptionSelection(
-                                      userAnswerIsCorrect, index);
-                                  widget.onAnswerSubmitted(
-                                      userAnswerIsCorrect, index);
-                                }
-                              },
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: optionSelectedList[index]
-                              ? isCorrect
-                                  ? const Color.fromRGBO(248, 248, 248, 1.0)
-                                  : const Color.fromRGBO(248, 248, 248, 1.0)
-                              : const Color.fromRGBO(0, 51, 102, 1.0),
-                        ),
-                        child: Text(
-                          option,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontFamily: 'RobotoMedium',
-                            color: optionSelectedList[index]
-                                ? const Color.fromRGBO(0, 51, 102, 1.0)
-                                : const Color.fromRGBO(248, 248, 248, 1.0),
-                          ),
-                        ),
+                      child: Padding(
+                        padding: const EdgeInsets.only(top: 3, bottom: 3),
+                        child: ElevatedButton(
+                            onPressed: answerSubmitted
+                                ? () {}
+                                : () {
+                                    if (!answerSubmitted) {
+                                      bool userAnswerIsCorrect =
+                                          option == widget._question.ans;
+                                      handleOptionSelection(
+                                          userAnswerIsCorrect, index);
+                                      widget.onAnswerSubmitted(
+                                          userAnswerIsCorrect, index);
+                                    }
+                                  },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: optionSelectedList[index]
+                                  ? isCorrect
+                                      ? Colors.green
+                                      : Colors.red
+                                  : const Color.fromRGBO(0, 51, 102, 1.0),
+                            ),
+                            child: Padding(
+                              padding:
+                                  const EdgeInsets.only(top: 10, bottom: 10),
+                              child: Text(
+                                option,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontFamily: 'RobotoMedium',
+                                  color: optionSelectedList[index]
+                                      ? const Color.fromRGBO(248, 248, 248, 1.0)
+                                      : const Color.fromRGBO(
+                                          248, 248, 248, 1.0),
+                                ),
+                              ),
+                            )),
                       ),
                     ),
                   ],

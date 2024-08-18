@@ -87,16 +87,16 @@ class _FeedbackPageState extends State<FeedbackPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: <Widget>[
-              const SizedBox(
-                height: 20,
-              ),
-              const Text(
-                "Feedback",
-                style: TextStyle(
-                    fontSize: 30.0,
-                    fontFamily: 'RobotoBold',
-                    fontWeight: FontWeight.bold,
-                    color: Color.fromRGBO(248, 248, 248, 1.0)),
+              Container(
+                padding: const EdgeInsets.fromLTRB(20, 20, 20, 10),
+                child: const Text(
+                  "Feedback",
+                  style: TextStyle(
+                      fontSize: 28.0,
+                      fontFamily: 'RobotoBold',
+                      fontWeight: FontWeight.bold,
+                      color: Color.fromRGBO(248, 248, 248, 1.0)),
+                ),
               ),
               const SizedBox(
                 height: 20,
