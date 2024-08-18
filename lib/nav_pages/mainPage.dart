@@ -11,12 +11,18 @@ class mainPage extends StatefulWidget {
 }
 
 class _mainPageState extends State<mainPage> {
-  List pages = [const homePage(), const AboutUsPage(), const FeedbackPage()];
+  final List<Widget> pages = [
+    const homePage(),
+    const AboutUsPage(),
+    const FeedbackPage(),
+  ];
   int currentIndex = 0;
+  late PageController _pageController;
 
   @override
   void initState() {
     super.initState();
+    _pageController = PageController();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
@@ -34,7 +40,18 @@ class _mainPageState extends State<mainPage> {
     });
   }
 
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
   void onTap(int index) {
+    _pageController.animateToPage(
+      index,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeInOut,
+    );
     setState(() {
       currentIndex = index;
     });
@@ -43,9 +60,38 @@ class _mainPageState extends State<mainPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: pages[currentIndex],
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text(
+          "StudyForge",
+          style: TextStyle(
+              color: Color.fromRGBO(0, 51, 102, 1.0),
+              fontWeight: FontWeight.bold),
+        ),
+        backgroundColor: const Color.fromRGBO(248, 248, 248, 1.0),
+        shadowColor: const Color.fromRGBO(0, 51, 102, 1.0),
+        actions: [
+          IconButton(
+            onPressed: () {
+              showSearch(context: context, delegate: CustomSearchDelegate());
+            },
+            icon: const Icon(Icons.search,
+                color: Color.fromRGBO(0, 51, 102, 1.0)),
+          )
+        ],
+      ),
+      body: PageView(
+        controller: _pageController,
+        children: pages,
+        physics: const NeverScrollableScrollPhysics(),
+        onPageChanged: (index) {
+          setState(() {
+            currentIndex = index;
+          });
+        },
+      ),
       bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed, // Fixed
+        type: BottomNavigationBarType.fixed,
         backgroundColor: const Color.fromRGBO(248, 248, 248, 1.0),
         onTap: onTap,
         currentIndex: currentIndex,
@@ -58,7 +104,7 @@ class _mainPageState extends State<mainPage> {
               Icons.home,
             ),
             label: 'Home',
-          ), //Home
+          ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.lightbulb,

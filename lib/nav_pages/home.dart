@@ -1,5 +1,4 @@
 // ignore_for_file: camel_case_types
-
 import 'package:flutter/material.dart';
 import 'package:studyforge/widgets/quiz.dart';
 import '../widgets/card.dart';
@@ -166,26 +165,6 @@ class _HomePageState extends State<homePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text(
-          "StudyForge",
-          style: TextStyle(
-              color: Color.fromRGBO(0, 51, 102, 1.0),
-              fontWeight: FontWeight.bold),
-        ),
-        backgroundColor: const Color.fromRGBO(248, 248, 248, 1.0),
-        shadowColor: const Color.fromRGBO(0, 51, 102, 1.0),
-        actions: [
-          IconButton(
-            onPressed: () {
-              showSearch(context: context, delegate: CustomSearchDelegate());
-            },
-            icon: const Icon(Icons.search,
-                color: Color.fromRGBO(0, 51, 102, 1.0)),
-          )
-        ],
-      ),
       backgroundColor: const Color.fromRGBO(0, 51, 102, 1.0),
       body: CustomScrollView(
         slivers: <Widget>[

@@ -67,21 +67,6 @@ class _FeedbackPageState extends State<FeedbackPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        // AppBar para sa taas ng design
-        appBar: AppBar(
-          centerTitle: true,
-          title: const Text(
-            "StudyForge",
-            style: TextStyle(
-                color: Color.fromRGBO(0, 51, 102, 1.0),
-                fontWeight: FontWeight.bold,
-                fontFamily: 'RobotoBold'),
-          ),
-          backgroundColor: const Color.fromRGBO(248, 248, 248, 1.0),
-          shadowColor: const Color.fromRGBO(0, 51, 102, 1.0),
-        ),
-
-        //body of the application
         backgroundColor: const Color.fromRGBO(0, 51, 102, 1.0),
         body: SingleChildScrollView(
           child: Column(
