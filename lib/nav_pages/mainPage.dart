@@ -82,13 +82,13 @@ class _mainPageState extends State<mainPage> {
       ),
       body: PageView(
         controller: _pageController,
-        children: pages,
         physics: const NeverScrollableScrollPhysics(),
         onPageChanged: (index) {
           setState(() {
             currentIndex = index;
           });
         },
+        children: pages,
       ),
       bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
