@@ -201,9 +201,9 @@ class _SecondPageState extends State<SecondPage> {
 
       _questionsList.shuffle();
 
-      _questionsList.forEach((question) {
+      for (var question in _questionsList) {
         (question as Question).options?.shuffle();
-      });
+      }
     });
   }
 }
