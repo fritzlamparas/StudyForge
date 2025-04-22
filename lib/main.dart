@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:studyforge/nav_pages/mainPage.dart';
+import 'package:studyforge/nav_pages/mainpage.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 
@@ -19,6 +19,6 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'StudyForge',
-        home: mainPage());
+        home: Mainpage());
   }
 }

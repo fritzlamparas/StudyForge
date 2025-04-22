@@ -1,9 +1,7 @@
-// ignore_for_file: file_names
-
 import 'package:flutter/material.dart';
 
-class AboutUsPage extends StatelessWidget {
-  const AboutUsPage({super.key});
+class AboutusPage extends StatelessWidget {
+  const AboutusPage({super.key});
 
   @override
   Widget build(BuildContext context) {

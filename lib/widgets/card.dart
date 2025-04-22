@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class ListViewCard extends StatelessWidget {
   final String title;
   final void Function()? onTap;
-  final String imageOfPlant; //Change to String
+  final String imageOfPlant;
 
   const ListViewCard({
     super.key,
@@ -23,15 +23,11 @@ class ListViewCard extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10.0),
       ),
-
       child: InkWell(
         splashColor: Colors.lightGreenAccent.withAlpha(30),
         onTap: onTap,
-
-        //sizedBox of the card
         child: Stack(
           children: <Widget>[
-            //image of the card
             Image.asset(
               imageOfPlant,
               height: 200,
@@ -52,14 +48,14 @@ class ListViewCard extends StatelessWidget {
                     style: const TextStyle(
                         fontSize: 15,
                         fontFamily: 'RobotoBold',
-                        color: Color.fromRGBO(0, 51, 102, 1.0)), // textstyle
+                        color: Color.fromRGBO(0, 51, 102, 1.0)),
                   ),
                 ),
               ),
-            ), //text //SizedBox
-          ], // <widget>[]
-        ), // column
-      ), //inkwell
-    ); // card
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }

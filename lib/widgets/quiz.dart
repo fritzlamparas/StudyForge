@@ -18,7 +18,6 @@ class _SecondPageState extends State<SecondPage> {
   int answeredQuestions = 0;
   bool isLoading = false;
 
-  // Add a map to store the selected options for each question
   Map<int, int> selectedOptions = {};
 
   @override
@@ -184,7 +183,7 @@ class _SecondPageState extends State<SecondPage> {
         totalQuestions = 0;
         answeredQuestions = 0;
         _questionsList.clear();
-        selectedOptions.clear(); // Clear selected options
+        selectedOptions.clear();
         getQuestionsList();
         isLoading = false;
       });
@@ -210,7 +209,7 @@ class _SecondPageState extends State<SecondPage> {
 
 class QuizCard extends StatefulWidget {
   final Question _question;
-  final int? selectedOptionIndex; // Add selectedOptionIndex
+  final int? selectedOptionIndex;
   final Function(bool, int) onAnswerSubmitted;
 
   const QuizCard(this._question,
@@ -238,7 +237,7 @@ class _QuizCardState extends State<QuizCard> {
       optionSelectedList[selectedOptionIndex] = true;
       isCorrect = widget._question.options![selectedOptionIndex] ==
           widget._question.ans;
-      // Only show the correct answer if the answer was incorrect
+
       showCorrectAnswer = !isCorrect && widget._question.correctAnswerShown;
     }
   }
@@ -333,7 +332,7 @@ class _QuizCardState extends State<QuizCard> {
       answerSubmitted = true;
       selectedOptionIndex = index;
       optionSelectedList[index] = true;
-      // Only show the correct answer if the user selected an incorrect answer.
+
       showCorrectAnswer = !userAnswerIsCorrect;
       widget._question.correctAnswerShown = !userAnswerIsCorrect;
     });

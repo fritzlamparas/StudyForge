@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:studyforge/nav_pages/aboutUs.dart';
-import 'package:studyforge/nav_pages/feedBack.dart';
+import 'package:studyforge/nav_pages/aboutus.dart';
+import 'package:studyforge/nav_pages/feedback.dart';
 import 'package:studyforge/nav_pages/home.dart';
 
-class mainPage extends StatefulWidget {
-  const mainPage({super.key});
+class Mainpage extends StatefulWidget {
+  const Mainpage({super.key});
 
   @override
-  State<mainPage> createState() => _mainPageState();
+  State<Mainpage> createState() => _MainpageState();
 }
 
-class _mainPageState extends State<mainPage> {
+class _MainpageState extends State<Mainpage> {
   final List<Widget> pages = [
     const homePage(),
-    const AboutUsPage(),
+    const AboutusPage(),
     const FeedbackPage(),
   ];
   int currentIndex = 0;
