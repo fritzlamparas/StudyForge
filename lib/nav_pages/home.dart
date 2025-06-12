@@ -1,16 +1,15 @@
-// ignore_for_file: camel_case_types
 import 'package:flutter/material.dart';
 import 'package:studyforge/widgets/quiz.dart';
 import '../widgets/card.dart';
 
-class homePage extends StatefulWidget {
-  const homePage({super.key});
+class HomePage extends StatefulWidget {
+  const HomePage({super.key});
 
   @override
-  State<homePage> createState() => _HomePageState();
+  State<HomePage> createState() => _HomePageState();
 }
 
-const List<String> plants = [
+const List<String> topics = [
   "Digital Logic Design",
   "Computer Architecture",
   "Embedded Systems",
@@ -28,22 +27,19 @@ class CustomSearchDelegate extends SearchDelegate {
   @override
   ThemeData appBarTheme(BuildContext context) {
     return ThemeData(
-      brightness: Brightness.light, // Change background color to black
+      brightness: Brightness.light,
       primaryColor: const Color.fromRGBO(0, 51, 102, 1.0),
       appBarTheme: const AppBarTheme(
           backgroundColor: Color.fromRGBO(248, 248, 248, 1.0)),
-
       textTheme: const TextTheme(
         titleLarge: TextStyle(
-          color: Color.fromRGBO(0, 51, 102, 1.0), // Change text color to white
+          color: Color.fromRGBO(0, 51, 102, 1.0),
         ),
       ),
       inputDecorationTheme: const InputDecorationTheme(
         filled: true,
-        fillColor: Color.fromRGBO(
-            248, 248, 248, 1.0), // Green color for the search field background
-        hintStyle: TextStyle(
-            color: Color.fromRGBO(0, 51, 102, 1.0)), // Color for the hint text
+        fillColor: Color.fromRGBO(248, 248, 248, 1.0),
+        hintStyle: TextStyle(color: Color.fromRGBO(0, 51, 102, 1.0)),
         border: OutlineInputBorder(
           borderSide: BorderSide.none,
         ),
@@ -88,7 +84,7 @@ class CustomSearchDelegate extends SearchDelegate {
   @override
   Widget buildResults(BuildContext context) {
     List<String> matchQuery = [];
-    for (var fruit in plants) {
+    for (var fruit in topics) {
       if (fruit.toLowerCase().contains(query.toLowerCase())) {
         matchQuery.add(fruit);
       }
@@ -116,7 +112,7 @@ class CustomSearchDelegate extends SearchDelegate {
   @override
   Widget buildSuggestions(BuildContext context) {
     List<String> matchQuery = [];
-    for (var fruit in plants) {
+    for (var fruit in topics) {
       if (fruit.toLowerCase().contains(query.toLowerCase())) {
         matchQuery.add(fruit);
       }
@@ -142,11 +138,11 @@ class CustomSearchDelegate extends SearchDelegate {
   }
 }
 
-class _HomePageState extends State<homePage> {
+class _HomePageState extends State<HomePage> {
   List<Widget> getPlantList() {
     List<Widget> plantitems = [];
-    for (int i = 0; i < plants.length; i++) {
-      String plant = plants[i];
+    for (int i = 0; i < topics.length; i++) {
+      String plant = topics[i];
       String imgname = i.toString();
       var newItem = ListViewCard(
         title: plant,
@@ -161,7 +157,6 @@ class _HomePageState extends State<homePage> {
     return plantitems;
   }
 
-//
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -202,7 +197,7 @@ class _HomePageState extends State<homePage> {
                 (context, index) {
                   return getPlantList()[index];
                 },
-                childCount: plants.length,
+                childCount: topics.length,
               ),
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,

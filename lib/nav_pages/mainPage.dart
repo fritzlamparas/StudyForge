@@ -12,7 +12,7 @@ class Mainpage extends StatefulWidget {
 
 class _MainpageState extends State<Mainpage> {
   final List<Widget> pages = [
-    const homePage(),
+    const HomePage(),
     const AboutusPage(),
     const FeedbackPage(),
   ];
